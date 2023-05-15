@@ -1,0 +1,23 @@
+program Doble2;
+var
+	num1, numsig, num2:real;
+	aux:integer;
+Begin
+	aux := 0;
+	writeln('Ingrese un numero real: ');
+	readln(num1);
+	num2 := num1 *2;
+	writeln('Ingrese un numero real: ');
+	readln(numsig);
+	aux := aux + 1;
+	while (numsig <> num2) and (aux < 10) do
+		begin
+			aux := aux + 1;
+			writeln('Ingrese otro numero real: ');
+			readln(numsig);
+		end;
+	if (aux = 10) and (numsig <> num2) then
+		writeln ('No se ha ingresado el doble de X')
+	else
+		writeln('El numero:', num2 ,', es el doble de: ', num1);
+end.
