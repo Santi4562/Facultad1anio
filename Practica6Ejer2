@@ -1,0 +1,60 @@
+program Ejercicio2;
+type
+	lista = ^nodo;
+	persona = record
+		dni: integer;
+		nombre: string;
+		apellido: string;
+	end;
+	nodo = record
+		dato: persona;
+		sig: lista;
+	end;
+	
+procedure leerPersona (var p:persona);
+begin
+	writeln('Escriba su DNI: ');
+	readln(p.dni);
+	writeln('Escriba su nombre: ');
+	readln(p.nombre);
+	writeln('Escriba su apellido: ');
+	readln(p.apellido);
+end;
+
+procedure agregarAdelante(var l:lista; p:persona);
+var
+	aux :lista;
+begin
+	new(aux);
+	aux^.dato:= p;
+	aux^.sig:= l;
+	l:= aux;
+end;
+
+procedure generarLista(var l:lista);
+var
+	p:persona;
+begin
+	leerPersona(p);
+	while (p.dni <> 0) do begin
+		agregarAdelante(l,p);
+		leerPersona(p);
+	end;
+end;
+
+procedure ImprimirInformacion(l:lista);
+begin
+	while (l <> nil) do begin
+		writeln('Dni: ', l^.dato.dni, ' Nombre: ', l^.dato.nombre, ' Apellido: ', l^.dato.apellido);
+		l:= l^.sig;
+	end;
+end;
+
+
+var
+	l:lista;
+begin
+	l:= nil;
+	generarLista(l);
+	imprimirInformacion(l);
+end.
